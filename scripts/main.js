@@ -39,7 +39,7 @@ function addItem(e) {
     
     const item = items[i]
 
-    //TODO
+    //TODO: mistake fix
 
     let title = item.querySelector('.item-name').innerText
 
@@ -115,7 +115,7 @@ function setQuantity(e) {
 
 // function updatePrice() {
 
-//TODO
+//TODO:total price 
 
 
   
