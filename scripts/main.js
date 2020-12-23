@@ -55,9 +55,6 @@ function destory(btn){
 
     const quantity =item.querySelector('.quantity').value
 
-    
-
-    console.log();
     const price =item.querySelector('.price').innerText.replace('$','')
     total +=(quantity * price)
     
@@ -84,31 +81,73 @@ function destory(btn){
 
     }
 
-    
+    const cartItem = input.parentElement.parentElement
 
+    const price = cartItem.querySelector('.price').innerText.replace('$','')
+
+    cartItem.querySelector('.subTotal').innerText = `$${quantity * price}`
 
     updateCart()
+    
+    console.log(cartItem,price);
+    
+  
+  })
+   
+ }
+
+ function addItem(btn) {
+
+  btn.addEventListener('click',(e) => {
+
+    const product = e.currentTarget.parentElement.parentElement
+    const productName = product.querySelector('.product_name').innerText
+    const price = product.querySelector('.price').innerText.replace('$','')
+
+    const el = document.querySelector('tr')
+     
+    el.innerHTML = 
+
+    `
+      <td class="title">${productName}</td>
+      <td><input type="number" value="2" class="quantity"></td>
+      <td class="price">$${price}</td>
+      <td class="subTotal">$${price}</td>
+      <td><button class="cart_del btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button></td>
+
+    `
+
+    const itemList = document.querySelector('.cart-list')
+    
+    itemList.appendChild(el)
+
+    el.querySelector('.cart_del').addEventListener('click', destory)
+
+    el.querySelector('.cart .quantity').addEventListener('change', updateQuantity)
+
+    updateCart()
+
+    console.log(price);
+
 
 
     
   })
-
-
-
-
-
-
    
  }
 
 
-const addItem = (btn) => {
 
 
-  btn,addEventListener('click',(e) => {
+ 
 
-    console.log("hi");
-
-        })
   
-}
+
+
+  
+    
+     
+  
+
+   
+  
