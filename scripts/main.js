@@ -49,10 +49,13 @@ function destory(btn){
  function updateCart() {
 
   const cartItem = document.querySelectorAll('.cart .cart-item')
+  let total = 0
 
   cartItem.forEach(item => {
 
     const quantity =item.querySelector('.quantity').value
+
+    
 
     console.log();
     const price =item.querySelector('.price').innerText.replace('$','')
