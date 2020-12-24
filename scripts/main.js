@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded',() => {
 
   const cartDelBtn = document.querySelectorAll('.cart_del')
   const addQuantity = document.querySelectorAll('.cart .quantity')
-  const cartItems = document.querySelectorAll('.add_product')
+  const cartItems = document.querySelectorAll('.items .add_product')
 
 
   cartDelBtn.forEach( btn => { btn.addEventListener('click',delItem) })
@@ -14,70 +14,56 @@ document.addEventListener('DOMContentLoaded',() => {
 
 function addItem(e) {
 
+  //TODO: fixed finish
   const product = e.currentTarget.parentElement.parentElement
-  
-  const price = product.querySelector('.price').innerText.replace('$','')
   const productName = product.querySelector('.product_name').innerText
-
-  let  cartList = document.querySelector('.cart-list')
-
-  let tr= document.createElement('tr')
+  const price = product.querySelector('.price').innerText.replace('$','')
   
-  tr.classList.add('cart-item')
 
-  tr.innerHTML=
-    `
-    <td>${productName}</td>
-    <td><input type="number" value="2" class="quantity"></td>
-    <td class="price">${price}</td>
-    <td class="subTotal">$25</td>
-    <td><button class="cart_del btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button></td>
-     
-    `
-  const  items = cartList.querySelectorAll('.cart-item')
-  for(let i = 0; i< items.length; i++){
-    
+  const items = document.querySelectorAll('.cart-item')
+  
+  for(let i = 0; i < items.length; i++){
+
     const item = items[i]
+    console.log(i);
+    const title = item.querySelector('.item-name').innerText
 
-    //TODO: mistake fix
 
-    let title = item.querySelector('.item-name').innerText
-
-    
+    // console.log(title);
 
     if(title === productName){
+      
+      item.querySelector('.quantity').value = Number(item.querySelector('.quantity').value) +1
 
-      item.querySelector('.quantity').value = Number(item.querySelector('.quantity').value)+1
-
-      // return;
-
+      return
     }
 
-
-        
-
+    
 
   }
-    cartList.appendChild(tr)
-    
-    
 
 
+  let tr = document.createElement('tr')
+   tr.classList.add('cart-item')
+   tr.innerHTML =
 
-  //  if(productName ===)
-    
+   `
+    <td class="item-name">${productName}</td>
+    <td><input type="number" value="1" class="quantity"></td>
+    <td class="price">${price}</</td>
+    <td class="subTotal">${price}</td>
+    <td><button class="cart_del btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button></td>
 
+   `
+  const cartList = document.querySelector('.cart-list')
+  cartList.appendChild(tr)
 
-
+  
+  // console.log(tr);
 
   
 
-  
 
-  
-
-
-  
 }
 
 
