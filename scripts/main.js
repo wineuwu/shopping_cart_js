@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded',() => {
   addQuantity.forEach(input => { input.addEventListener('change', setQuantity)})
   cartItems.forEach((btn) => {btn.addEventListener('click', addItem)})
 
-  
 })
 
 function addItem(e) {
@@ -37,11 +36,8 @@ function addItem(e) {
 
       return
     }
-
-    
-
+    updatePrice() 
   }
-
 
   let tr = document.createElement('tr')
    tr.classList.add('cart-item')
@@ -58,12 +54,8 @@ function addItem(e) {
   const cartList = document.querySelector('.cart-list')
   cartList.appendChild(tr)
 
-  
-  // console.log(tr);
-
-  
-
-
+  tr.querySelector('.cart_del').addEventListener('click',delItem)
+  tr.querySelector('.cart .quantity').addEventListener('change',setQuantity)
 }
 
 
@@ -71,7 +63,6 @@ function delItem(e){
     // console.log(e.currentTarget.parentElement.parentElement);
     const item = e.currentTarget.parentElement.parentElement
     item.remove()
-
 }
 
 function setQuantity(e) {
@@ -79,7 +70,7 @@ function setQuantity(e) {
   const input = e.currentTarget
   let quantity = input.value
 
-  console.log(quantity);
+  // console.log(quantity);
 
   if( quantity <= 0){
 
@@ -98,11 +89,23 @@ function setQuantity(e) {
 }
 
 
-
-// function updatePrice() {
+function updatePrice() {
 
 //TODO:total price 
+ 
+  let quantity = document.querySelector('.cart-item .quantity').value
+  const price =  document.querySelector('.cart-item .price').innerText.replace('$',)
+
+  quantity.addEventListener('change',() => {
+
+    const subTotal = quantity*price
+
+    console.log(subTotal);
+    
+  })
 
 
-  
-// }
+
+
+
+ }
